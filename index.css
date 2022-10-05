@@ -1,0 +1,29 @@
+body {
+    height: 100vh;
+}
+form {
+    width: 300px;
+    font-family: Poppins-Medium;
+    color: #003087;  
+
+}
+
+input {
+    border: none;
+    font-family: Poppins-Medium;
+    font-size: 15px;
+}
+button {
+    margin-bottom: 10px;
+    font-family: Poppins-Medium;
+    font-size: 15px;
+}
+
+h1{
+    font-size: 39px;
+    margin-top: 50px;
+    line-height: 4.2;
+    text-align: center;   
+    color:#003087;
+    font-family: Poppins-Bold, sans-serif;
+}   

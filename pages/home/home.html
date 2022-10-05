@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Home - PortLibras</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="home.css"> 
+</head>
+<body>
+  <center>
+  <div>
+  <h1>Complete a Palavra</h1>
+  <header>
+    <button type="button" class="solid" onclick="logout()">
+      Sair
+  </button>
+  </header>
+  <div class="container">
+    <div id="imagem">
+    <img src="../../imagens/pato.png" width="150">
+  </div>
+  <div id="divPalavra">
+    <div id="palavra-secreta">
+      <!-- <div class="letras"></div>
+      <div class="letras"></div>
+      <div class="letras"></div>
+      <div class="letras"></div> -->
+    </div>
+    <div id = alerta>
+
+    </div>
+  </div>
+    <br>
+    <center>
+<div id="teclado">
+    <div class="teclas">
+    <button id="tecla-A" onclick="verificaLetraEscolhida('A')">A</button>
+    <button id="tecla-B" onclick="verificaLetraEscolhida('B')">B</button>
+    <button id="tecla-C" onclick="verificaLetraEscolhida('C')">C</button>
+    <button id="tecla-D" onclick="verificaLetraEscolhida('D')">D</button>
+    <button id="tecla-E" onclick="verificaLetraEscolhida('E')">E</button>
+    <button id="tecla-F" onclick="verificaLetraEscolhida('F')">F</button>
+    <button id="tecla-G" onclick="verificaLetraEscolhida('G')">G</button>
+    <button id="tecla-H" onclick="verificaLetraEscolhida('H')">H</button>
+    <button id="tecla-I" onclick="verificaLetraEscolhida('I')">I</button>
+    <button id="tecla-J" onclick="verificaLetraEscolhida('J')">J</button>
+    <button id="tecla-K" onclick="verificaLetraEscolhida('K')">K</button>
+    <button id="tecla-L" onclick="verificaLetraEscolhida('L')">L</button>
+    <button id="tecla-M" onclick="verificaLetraEscolhida('M')">M</button>
+  </div>
+  <div id="teclado">
+    <div class="teclas">
+    <button id="tecla-N" onclick="verificaLetraEscolhida('N')">N</button>
+    <button id="tecla-O" onclick="verificaLetraEscolhida('O')">O</button>
+    <button id="tecla-P" onclick="verificaLetraEscolhida('P')">P</button>
+    <button id="tecla-Q" onclick="verificaLetraEscolhida('Q')">Q</button>
+    <button id="tecla-R" onclick="verificaLetraEscolhida('R')">R</button>
+    <button id="tecla-S" onclick="verificaLetraEscolhida('S')">S</button>
+    <button id="tecla-T" onclick="verificaLetraEscolhida('T')">T</button>
+    <button id="tecla-U" onclick="verificaLetraEscolhida('U')">U</button>
+    <button id="tecla-V" onclick="verificaLetraEscolhida('V')">V</button>
+    <button id="tecla-W" onclick="verificaLetraEscolhida('W')">W</button>
+    <button id="tecla-X" onclick="verificaLetraEscolhida('X')">X</button>
+    <button id="tecla-Y" onclick="verificaLetraEscolhida('Y')">Y</button>
+    <button id="tecla-Z" onclick="verificaLetraEscolhida('Z')">Z</button>
+    </div>
+    <button id="btnReiniciar" class="outline">🎮</button>
+</div>
+</center>
+<br>
+<div id="categoria">
+  </div>
+</div>
+</center>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script> 
+      
+      <div id="palavraCerta"></div>
+      <div id="palavraAtual"></div>
+      <div id="teclado"></div>  
+    </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+
+<script src="../..//firebase-init.js"></script>
+<script src="../../auth-guard.js"></script>
+<script src="../../loading.js"></script>
+<script src="home.js" defer></script>
+
+</html>

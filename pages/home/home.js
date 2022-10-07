@@ -10,218 +10,41 @@ let jogarNovamente = true;
 let palavraSecretaCategoria;
 let palavraSecretaSorteada;
 let listaDinamica = [];
-const palavras = [
-    palavras001 = {
-        nome: "PATO",
-        categoria: "CATEGORIA: ANIMAL"
-    },
-    palavras002 = {
-        nome: "RATO",
-        categoria: "CATEGORIA: ANIMAL"
-    },
-    palavras003 = {
-        nome: "GATO",
-        categoria: "CATEGORIA: ANIMAL"
-    },
-    palavras004 = {
-        nome: "SAPO",
-        categoria: "CATEGORIA: ANIMAL"
-    },
-    palavras005 = {
-        nome: "TATU",
-        categoria: "CATEGORIA: ANIMAL"
-    },
-    palavras006 = {
-        nome: "JACA",
-        categoria: "CATEGORIA: FRUTA"
-    },
-    palavras007 = {
-        nome: "KIWI",
-        categoria: "CATEGORIA: FRUTA"
-    },
-    palavras008 = {
-        nome: "COCO",
-        categoria: "CATEGORIA: FRUTA"
-    },
-    palavras009 = {
-        nome: "FIGO",
-        categoria: "CATEGORIA: FRUTA"
-    },
-    palavras010 = {
-        nome: "CAJU",
-        categoria: "CATEGORIA: FRUTA"
-    },
-    palavras011 = {
-        nome: "CUBA",
-        categoria: "CATEGORIA: PAÍS"
-    },
-    palavras012 = {
-        nome: "GANA",
-        categoria: "CATEGORIA: PAÍS"
-    },
-    palavras013 = {
-        nome: "TOGO",
-        categoria: "CATEGORIA: PAÍS"
-    },
-    palavras014 = {
-        nome: "PERU",
-        categoria: "CATEGORIA: PAÍS"
-    },
-    palavras015 = {
-        nome: "MALI",
-        categoria: "CATEGORIA: PAÍS"
-    },
-    palavras016 = {
-        nome: "SOPA",
-        categoria: "CATEGORIA: ALIMENTO"
-    },
-    palavras017 = {
-        nome: "SAGU",
-        categoria: "CATEGORIA: ALIMENTO"
-    },
-    palavras018 = {
-        nome: "BROA",
-        categoria: "CATEGORIA: ALIMENTO"
-    },
-    palavras019 = {
-        nome: "BOLO",
-        categoria: "CATEGORIA: ALIMENTO"
-    },
-    palavras020 = {
-        nome: "BIFE",
-        categoria: "CATEGORIA: ALIMENTO"
-    },
-    palavras021 = {
-        nome: "DADO",
-        categoria: "CATEGORIA: OBJETO"
-    },
-    palavras022 = {
-        nome: "CAPA",
-        categoria: "CATEGORIA: OBJETO"
-    },
-    palavras023 = {
-        nome: "CAMA",
-        categoria: "CATEGORIA: OBJETO"
-    },
-    palavras024 = {
-        nome: "BOLA",
-        categoria: "CATEGORIA: OBJETO"
-    },
-    palavras025 = {
-        nome: "CUIA",
-        categoria: "CATEGORIA: OBJETO"
-    },
-    palavras026 = {
-        nome: "AZUL",
-        categoria: "CATEGORIA: COR"
-    },
-    palavras027 = {
-        nome: "ROSA",
-        categoria: "CATEGORIA: COR"
-    },
-    palavras028 = {
-        nome: "BEJE",
-        categoria: "CATEGORIA: COR"
-    },
-    palavras029 = {
-        nome: "ROXO",
-        categoria: "CATEGORIA: COR"
-    },
-    palavras030 = {
-        nome: "GELO",
-        categoria: "CATEGORIA: COR"
-    },
-    palavras031 = {
-        nome: "POLO",
-        categoria: "CATEGORIA: CARRO"
-    },
-    palavras032 = {
-        nome: "CLIO",
-        categoria: "CATEGORIA: CARRO"
-    },
-    palavras033 = {
-        nome: "CRUZE",
-        categoria: "CATEGORIA: CARRO"
-    },
-    palavras034 = {
-        nome: "IDEA",
-        categoria: "CATEGORIA: CARRO"
-    },
-    palavras035 = {
-        nome: "ARGO",
-        categoria: "CATEGORIA: CARRO"
-    },
-    palavras036 = {
-        nome: "JUNO",
-        categoria: "CATEGORIA: FILME"
-    },
-    palavras037 = {
-        nome: "LUCY",
-        categoria: "CATEGORIA: FILME"
-    },
-    palavras038 = {
-        nome: "DAME",
-        categoria: "CATEGORIA: FILME"
-    },
-    palavras039 = {
-        nome: "ROMA",
-        categoria: "CATEGORIA: FILME"
-    },
-    palavras040 = {
-        nome: "HULK",
-        categoria: "CATEGORIA: FILME"
-    },
-    palavras041 = {
-        nome: "BETE",
-        categoria: "CATEGORIA: PESSOA"
-    },
-    palavras042 = {
-        nome: "RUTE",
-        categoria: "CATEGORIA: PESSOA"
-    },
-    palavras043 = {
-        nome: "SARA",
-        categoria: "CATEGORIA: PESSOA"
-    },
-    palavras044 = {
-        nome: "ROSE",
-        categoria: "CATEGORIA: PESSOA"
-    },
-    palavras045 = {
-        nome: "YAGO",
-        categoria: "CATEGORIA: PESSOA"
-    },
-    palavras046 = {
-        nome: "CHUI",
-        categoria: "CATEGORIA: CIDADE"
-    },
-    palavras047 = {
-        nome: "MATA",
-        categoria: "CATEGORIA: CIDADE"
-    },
-    palavras048 = {
-        nome: "BURI",
-        categoria: "CATEGORIA: CIDADE"
-    },
-    palavras049 = {
-        nome: "FAMA",
-        categoria: "CATEGORIA: CIDADE"
-    },
-    palavras050 = {
-        nome: "LINS",
-        categoria: "CATEGORIA: CIDADE"
-    },
-];
+
+const db = firebase.firestore();
+
+
+async function getPalavras(){
+db.collection("palavrasNivelFacil")
+.get()
+.then((querySnapshot) => {
+    console.log(querySnapshot)
+    for(let i = 0; i < querySnapshot.)
+    
+    querySnapshot.forEach((doc) => {
+     palavras.push(doc.data());      
+    });
+    console.log(palavras);
+});
+}
+
+let palavras = getPalavras();
+
+Promise.all([getP]).then(res => {
+    criarPalavraSecreta();
+    montarPalavranaTela();
+})
 
 function criarPalavraSecreta(){
     const indexPalavra = parseInt(Math.random() * palavras.length)
     
-    palavraSecretaSorteada = palavras[indexPalavra].nome;
+    console.log(palavras)
+    palavraSecretaSorteada = palavras[indexPalavra].name;
     palavraSecretaCategoria = palavras[indexPalavra].categoria;
     console.log(palavraSecretaSorteada)
     console.log( palavraSecretaCategoria)
 }
-criarPalavraSecreta();
+
 
 function montarPalavranaTela(){
     const categoria = document.getElementById("categoria");
@@ -240,7 +63,7 @@ for (i = 0; i < palavraSecretaSorteada.length; i++){
     }
  }
 }
-montarPalavranaTela();
+
 
 function verificaLetraEscolhida(letra){
 
@@ -255,6 +78,7 @@ const pos = palavraSecretaSorteada.indexOf(letra)
 if(pos < 0){
     //aparecer imagem
     document.getElementById('tecla-'+letra).style.background = 'red';
+    
     erros++;
 }
 else{
@@ -305,13 +129,36 @@ btnReiniciar.addEventListener("click", function(){
     location.reload();
 });
 
-const db = firebase.firestore();
 
-db.collection("palavrasNivelFacil")
-.get()
-.then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        
-    });
-});
+
+let horas = 0;
+let minutos = 0;
+let segundos = 0;
+
+
+let timer;
+var elemento = document.getElementById('timer');
+
+(function (){
+    if (segundos == 60) {
+        segundos = 0;
+        minutos++;
+      }
+      if (minutos == 60) {
+        minutos = 0;
+        horas++;
+      }
+  timer = setInterval(()=>{
+    elemento.innerHTML = '00:'+segundos;
+    segundos ++;
+  }, 1000) // each 1 second
+})();
+
+function pause(){
+  clearInterval(timer);
+ 
+}
+  
+
+   
+   

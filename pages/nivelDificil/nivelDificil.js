@@ -15,7 +15,7 @@ const db = firebase.firestore();
 let palavras =[];
 
 async function getPalavras(){
-db.collection("palavrasNivelFacil")
+db.collection("palavrasNivelDificil")
 .get()
 .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -134,8 +134,7 @@ let elemento = document.getElementById('timer');
     let horas = 0;
     let minutos = 0;
     let segundos = 0;
-      
-  timer = setInterval(()=>{
+
     if (segundos == 60) {
         segundos = 0;
         minutos++;
@@ -144,8 +143,9 @@ let elemento = document.getElementById('timer');
         minutos = 0;
         horas++;
       }
-
-    elemento.innerHTML = 'Tempo: '+horas+':'+minutos+':'+segundos;
+      
+  timer = setInterval(()=>{
+    elemento.innerHTML = 'Tempo: 00:00:'+segundos;
     segundos ++;
   }, 1000) // each 1 second
 })();
@@ -154,8 +154,6 @@ function pause(){
   clearInterval(timer);
  
 }
-
-
   
 
    

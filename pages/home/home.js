@@ -194,7 +194,7 @@ let elemento = document.getElementById('timer');
             horas++;
         }
 
-        elemento.innerHTML = 'Tempo: ' +horas+ ':' +minutos+ ':' +segundos;
+        elemento.innerHTML = '⏳  ' +horas+ ':' +minutos+ ':' +segundos;
         segundos++;
     }, 1000) // each 1 second
 })();

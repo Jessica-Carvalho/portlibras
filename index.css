@@ -27,3 +27,12 @@ h1{
     color:#003087;
     font-family: Poppins-Bold, sans-serif;
 }   
+
+#video {
+    display: block;
+    height: 5px;
+    left: 0%;
+    position: absolute;
+    top: 40%;
+    width: 10px;
+    }

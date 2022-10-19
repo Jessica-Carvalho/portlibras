@@ -9,25 +9,21 @@
     
     <link rel="stylesheet" href="../../global.css">
     <link rel="stylesheet" href="home.css"> 
+    
 </head>
 <body>
   <center>
+    
+  <div class="titulo">
+  <h1> Complete a Palavra </h1> <button type="button" class="sair" onclick="logout()">Sair </button> 
   <div>
-  <h1>Complete a Palavra</h1>
-  
-  <header>
-    <button type="button" class="sair" onclick="logout()">
-      Sair
-    </button>
-  <div>
-  </header>
     
   <div>
     <div id="pontos">
-      Pontuação: 
+      Pontos: 
     </div>
     <div id="timer">
-      Tempo: 00:00:00
+      ⏳ 00:00:00
     </div>
   <div>
 
@@ -36,7 +32,7 @@
   <div>
   <div class="container">
     <div id="imagem">
-    <img id="palavraImg" src="../../imagens/pato.png" width="150">
+    <img id="palavraImg" src="../../imagens/Preloader.svg" width="150">
   </div>
   <div id="divPalavra">
     <div id="palavra-secreta">
@@ -50,6 +46,7 @@
     </div>
   </div>
     <br>
+    
     <center>
 <div id="teclado">
     <div class="teclas">
@@ -96,17 +93,24 @@
         <div vw-plugin-wrapper>
           <div class="vw-plugin-top-wrapper"></div>
         </div>
+        
       </div>
       <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
       <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
       </script> 
-      
       <div id="palavraCerta"></div>
       <div id="palavraAtual"></div>
       <div id="teclado"></div>  
     </div>
 </body>
+
+<div id="video">
+<video  width="320" height="240" controls="controls" autoplay="autoplay">
+  <source src="/ExplicaçãoVlibras.mp4" type="video/mp4">
+  <object id="video" data="">
+  <embed id="video" src="/ExplicaçãoVlibras.mp4">
+  </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>

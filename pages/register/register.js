@@ -36,9 +36,17 @@ function register() {
     const password = form.password().value;
     firebase.auth().createUserWithEmailAndPassword(
         email, password
-    ).then(() => {
+    ).then((res) => {
         hideLoading();
-        window.location.href = "../../pages/home/home.html";
+        const db = firebase.firestore();
+        let jogador = {
+            id: res.user.uid,
+            nome: res.user.email
+        };
+        console.log(res);
+        console.log(jogador);
+        db.collection("jogadores").doc(jogador.id)
+            .set(jogador).then(() => window.location.href = "../../pages/home/home.html")
     }).catch(error => {
         hideLoading();
         alert(getErrorMessage(error));

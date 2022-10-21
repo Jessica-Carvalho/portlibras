@@ -144,14 +144,20 @@ function comparalistas(letra) {
     }
 
     if ((vitoria == true) && (listaDinamica[i] == palavraSecretaSorteada[i])) {
+        pontos += 10;
 
         document.getElementById("alerta").innerHTML = "Acertou! ✔️"
         //salvar no banco a pessoa que ganhou, a palavra e a data
-        document.getElementById("pontos").innerHTML = 'Pontuação:' + pontos + 10;
+        
+        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontos;
         pontos++;
 
-
-        piscarBotaoJogarNovamente();
+        db.collection("jogadores/" + jogador + "/palavrasFeitas").doc(palavraSecretaId)
+            .set({
+                id: palavraSecretaId,
+                pontos: "",
+                tempo: (((horas * 60) + minutos) * 60) + segundos
+            }).then(() => piscarBotaoJogarNovamente())
     }
 }
 
@@ -178,11 +184,11 @@ btnReiniciar.addEventListener("click", function () {
 let timer;
 let elemento = document.getElementById('timer');
 
-(function () {
+let horas = 0;
+let minutos = 0;
+let segundos = 0;
 
-    let horas = 0;
-    let minutos = 0;
-    let segundos = 0;
+(function () {
 
     timer = setInterval(() => {
         if (segundos == 60) {
@@ -194,7 +200,7 @@ let elemento = document.getElementById('timer');
             horas++;
         }
 
-        elemento.innerHTML = '⏳  ' +horas+ ':' +minutos+ ':' +segundos;
+        elemento.innerHTML = '⏱️  ' + (horas < 10 ? '0' : '') + horas+ ':' + (minutos < 10 ? '0' : '') +minutos+ ':' + (segundos < 10 ? '0' : '') +segundos;
         segundos++;
     }, 1000) // each 1 second
 })();
@@ -203,3 +209,4 @@ function pause() {
     clearInterval(timer);
 
 }
+

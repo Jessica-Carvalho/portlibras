@@ -28,11 +28,84 @@ h1{
     font-family: Poppins-Bold, sans-serif;
 }   
 
+.btn{
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 15px;
+    background: #003087;
+     display: inline-block; 
+     color: white;
+     position: absolute;
+     top: 75%;
+     left: 10%;
+     transform: translate(-50%,-50%);
+     cursor: pointer;
+
+}
+
+.btn:hover{
+
+    background: aliceblue;
+    color: black;
+
+
+}
+
+.modal{
+
+    width: 335px;
+    height: 265px;
+    border-radius: 15px;
+    background-color: #003087;
+    position: absolute;
+     top: 75%;
+     left: 11.5%;
+     transform: translate(-50%,-50%);
+     display: none;
+     animation: animate;
+     animation-duration: 800ms;
+    
+}
+
+@keyframes animate{
+
+    from{opacity: 1;}
+    from{opacity: 0;}
+}
+
+
+.fechar{
+
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    margin-top: 3px;
+    text-align: center;
+    font: 1em sans-serif;
+    background-color: red;
+    border-radius: 50%;
+    float: right;
+    cursor: pointer;
+}
+
+.imgAprender{
+    
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 15px;
+}
+
 #video {
     display: block;
     height: 5px;
     left: 0%;
     position: absolute;
-    top: 40%;
+    top: 5%;
+    left: 10px;
     width: 10px;
     }

@@ -43,12 +43,21 @@
       </script>
 </body>
 
-<div id="video">
-    <video  width="320" height="240" controls="controls" autoplay="autoplay">
-      <source src="/ApresentaçãoVlibras2.mp4" type="video/mp4">
-      <object id="video" data="">
-      <embed id="video" src="/ApresentaçãoVlibras2.mp4">
+<div>
+    <button  onclick="acao()" class="btn"><img class="imgAprender" src= "./imagens/Aprender.ico"></button>
+  </div>
+  
+  <div class="modal">
+  
+    <div onclick="fechar()" class="fechar">X</div>
+    <div id="video">
+        <video width="320" height="240" controls="controls" autoplay="autoplay" preload="auto">
+          <source src="./videos/apresentacaovlibras.mp4" type="video/mp4">
+          <object data="">
+            <embed src="./videos/apresentacaovlibras.mp4">
       </div>
+  </div>
+  
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="index.css">

@@ -18,6 +18,7 @@
     <div class="titulo">
       <h1>Complete a Palavra</h1><button type="button" class="sair" onclick="logout()">Sair</button>
       <button type="button" class="dicionario" onclick="window.open('https://www.ines.gov.br/dicionario-de-libras/');">Dicionário Libras</button>
+      <button type="button" class="ranking" onclick="ranking()">Ranking</button>
       <div>
         <div>
           <div id="pontos">
@@ -94,30 +95,34 @@
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
     </div>
-
   </div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
+
   <div id="palavraCerta"></div>
   <div id="palavraAtual"></div>
   <div id="teclado"></div>
   </div>
 </body>
 
-<a href="#video">Tutorial</a>
-    
-    <div id="video" class="video">
-        <a href="#fechar" title="Fechar" class="fechar">[Fechar]</a>
-        
-        <video width="320" height="240" controls="controls" autoplay="autoplay">
-            <source src="/explicacaovlibras.mp4" type="video/mp4">
-            <object id="video" data="">
-                <embed id="video" src="/explicacaovlibras.mp4">
-            </object>                
-        </video>
+<div>
+  <button  onclick="acao()" class="btn"><img class="imgAprender" src= "./../../imagens/Aprender.ico"></button>
+</div>
+
+<div class="modal">
+
+  <div onclick="fechar()" class="fechar">X</div>
+  <div id="video">
+      <video width="320" height="240" controls="controls" autoplay="autoplay" preload="auto">
+        <source src="../../videos/explicacaovlibras.mp4" type="video/mp4">
+        <object data="">
+          <embed src="../../videos/explicacaovlibras.mp4">
     </div>
+</div>
+
+
 
 <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>

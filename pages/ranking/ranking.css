@@ -1,0 +1,55 @@
+/*
+    Zerar estilos
+  */
+  * {
+    margin: 0px; 
+    padding: 0px; 
+    box-sizing: border-box;   
+  }
+body {
+    width: 100vw;
+    height: 90vh;
+    margin-top: 10px;
+    background-color: #73c2fa;
+    font-family:  Poppins-Bold;
+    margin: 0 !important;
+}
+
+
+.titulo{
+    height: 70px;
+    position: relative;
+    font-size: 23px;
+    text-align: center;
+    line-height: 1.5;  
+    color:#003087;
+    background-color: white;
+}
+
+
+.sair{
+    width: 50px;
+    display: inline;
+    position: relative;
+    top: -55px;
+    margin-left: 1250px;
+    text-align: center;
+    border-radius: 5px;
+    border-color: #003087;
+    background: #003087;
+    color: white;
+    cursor: pointer
+}
+
+table{
+    width: 50% !important;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 20px !important;
+    border: 1px solid #003087;
+    font-family:  Poppins-Bold;
+    color:  #003087; 
+}
+.tabela{
+    border-radius: 5px;
+}

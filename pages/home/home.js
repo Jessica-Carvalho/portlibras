@@ -41,7 +41,7 @@ async function getPalavras() {
 
             console.log(jogador);
             console.log("jogadores/" + jogador + "/palavrasFeitas")
-            
+
             //Código para pegar as palavras feitas
             db.collection("jogadores/" + jogador + "/palavrasFeitas")
                 .get()
@@ -58,10 +58,12 @@ async function getPalavras() {
                         .then((querySnapshot) => {
                             querySnapshot.forEach((doc) => {
                                 palavra = { id: doc.id, ...doc.data() };
-                                if(palavrasFeitas.find(palavraFeita => palavraFeita.id == palavra.id) == undefined)
+                                if (palavrasFeitas.find(palavraFeita => palavraFeita.id == palavra.id) == undefined)
                                     palavras.push(palavra);
                             });
                             console.log(palavras);
+                            pontuacao = criarPontuacao();
+                            console.log('Pontuação: ' + pontuacao);
                             criarPalavraSecreta();
                             montarPalavranaTela();
 
@@ -74,6 +76,19 @@ async function getPalavras() {
 }
 getPalavras();
 
+let pontuacao = 0;
+function criarPontuacao() {
+    let pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
+    let pontos = palavrasFeitas.map(palavra => palavra.pontos);
+    if (pontos == 100) {
+        pontuacao = 0;
+        document.getElementById('pontos').innerHTML = 'Parabéns, você passou de Nível!'
+        window.location.href = "pages/nivelIntermediario/nivelIntermediario.html";
+    }
+
+    document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
+    return pontuacaoFinal;
+}
 
 function criarPalavraSecreta() {
     const indexPalavra = parseInt(Math.random() * palavras.length)
@@ -144,18 +159,17 @@ function comparalistas(letra) {
     }
 
     if ((vitoria == true) && (listaDinamica[i] == palavraSecretaSorteada[i])) {
-        pontos += 10;
+        pontuacao += 10;
 
         document.getElementById("alerta").innerHTML = "Acertou! ✔️"
         //salvar no banco a pessoa que ganhou, a palavra e a data
-        
-        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontos;
-        pontos++;
+
+        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
 
         db.collection("jogadores/" + jogador + "/palavrasFeitas").doc(palavraSecretaId)
             .set({
                 id: palavraSecretaId,
-                pontos: "",
+                pontos: 10,
                 tempo: (((horas * 60) + minutos) * 60) + segundos
             }).then(() => piscarBotaoJogarNovamente())
     }
@@ -200,7 +214,7 @@ let segundos = 0;
             horas++;
         }
 
-        elemento.innerHTML = '⏱️  ' + (horas < 10 ? '0' : '') + horas+ ':' + (minutos < 10 ? '0' : '') +minutos+ ':' + (segundos < 10 ? '0' : '') +segundos;
+        elemento.innerHTML = '⏱️  ' + (horas < 10 ? '0' : '') + horas + ':' + (minutos < 10 ? '0' : '') + minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
         segundos++;
     }, 1000) // each 1 second
 })();
@@ -210,3 +224,24 @@ function pause() {
 
 }
 
+function ranking() {
+    window.location.href = "/pages/ranking/ranking.html";
+}
+
+function acao(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'block';
+}
+
+
+function fechar(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'none';
+
+}

@@ -37,14 +37,14 @@ function register() {
     firebase.auth().createUserWithEmailAndPassword(
         email, password
     ).then((res) => {
-        hideLoading();
-        const db = firebase.firestore();
+        hideLoading(); 
+       const db = firebase.firestore();
         let jogador = {
             id: res.user.uid,
             nome: res.user.email
         };
         console.log(res);
-        console.log(jogador);
+        console.log(jogador); 
         db.collection("jogadores").doc(jogador.id)
             .set(jogador).then(() => window.location.href = "../../pages/home/home.html")
     }).catch(error => {

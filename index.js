@@ -93,3 +93,21 @@ const form = {
     passwordRequiredError: () => document.getElementById("password-required-error"),
     recoverPasswordButton: () => document.getElementById("recover-password-button"),
 } 
+
+function acao(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'block';
+}
+
+
+function fechar(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'none';
+
+}

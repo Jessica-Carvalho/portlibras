@@ -31,22 +31,13 @@ function onChangeConfirmPassword() {
 
 function register() {
     showLoading();
-
+    const db = firebase.firestore();
     const email = form.email().value;
     const password = form.password().value;
     firebase.auth().createUserWithEmailAndPassword(
         email, password
-    ).then((res) => {
-        hideLoading(); 
-       const db = firebase.firestore();
-        let jogador = {
-            id: res.user.uid,
-            nome: res.user.email
-        };
-        console.log(res);
-        console.log(jogador); 
-        db.collection("jogadores").doc(jogador.id)
-            .set(jogador).then(() => window.location.href = "../../pages/home/home.html")
+    ).then((res) => { 
+       window.location.href = "../../pages/home/home.html";
     }).catch(error => {
         hideLoading();
         alert(getErrorMessage(error));

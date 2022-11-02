@@ -1,3 +1,15 @@
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        let jogador = {
+            id: user.uid,
+            nome: user.email
+        };
+        console.log(jogador); 
+        db.collection("jogadores").doc(jogador.id)
+            .set(jogador)
+    }
+})
+
 function logout() {
     firebase.auth().signOut().then(() => {
         window.location.href = "../../index.html";
@@ -19,6 +31,7 @@ async function getUsuario() {
         }
     })
 }
+let pontuacao = 0;
 
 let jogarNovamente = true;
 let palavraSecretaId;
@@ -76,17 +89,23 @@ async function getPalavras() {
 }
 getPalavras();
 
-let pontuacao = 0;
 function criarPontuacao() {
-    let pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
-    let pontos = palavrasFeitas.map(palavra => palavra.pontos);
-    if (pontos == 100) {
-        pontuacao = 0;
-        document.getElementById('pontos').innerHTML = 'Parabéns, você passou de Nível!'
-        window.location.href = "pages/nivelIntermediario/nivelIntermediario.html";
+    let pontuacaoFinal = 0;
+    if(palavrasFeitas.length > 0){
+        let pontos = palavrasFeitas.map(palavra => palavra.pontos);
+    
+        pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
     }
 
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
+
+    console.log(palavrasFeitas)
+    let palavrasFeitasFaceis = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível fácil');
+    console.log(palavrasFeitasFaceis)
+    if (palavrasFeitasFaceis.length >= 3) {
+        window.location.href = "../proximoNivel/proximoNivel.html";
+    }
+
     return pontuacaoFinal;
 }
 
@@ -165,12 +184,13 @@ function comparalistas(letra) {
         //salvar no banco a pessoa que ganhou, a palavra e a data
 
         document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
-
+        
         db.collection("jogadores/" + jogador + "/palavrasFeitas").doc(palavraSecretaId)
             .set({
                 id: palavraSecretaId,
                 pontos: 10,
-                tempo: (((horas * 60) + minutos) * 60) + segundos
+                tempo: (((horas * 60) + minutos) * 60) + segundos,
+                dificuldade: 'nível fácil'
             }).then(() => piscarBotaoJogarNovamente())
     }
 }

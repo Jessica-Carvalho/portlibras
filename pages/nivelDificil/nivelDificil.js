@@ -1,3 +1,15 @@
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        let jogador = {
+            id: user.uid,
+            nome: user.email
+        };
+        console.log(jogador); 
+        db.collection("jogadores").doc(jogador.id)
+            .set(jogador)
+    }
+})
+
 function logout() {
     firebase.auth().signOut().then(() => {
         window.location.href = "../../index.html";
@@ -19,6 +31,7 @@ async function getUsuario() {
         }
     })
 }
+let pontuacao = 0;
 
 let jogarNovamente = true;
 let palavraSecretaId;
@@ -41,7 +54,7 @@ async function getPalavras() {
 
             console.log(jogador);
             console.log("jogadores/" + jogador + "/palavrasFeitas")
-            
+
             //Código para pegar as palavras feitas
             db.collection("jogadores/" + jogador + "/palavrasFeitas")
                 .get()
@@ -58,10 +71,12 @@ async function getPalavras() {
                         .then((querySnapshot) => {
                             querySnapshot.forEach((doc) => {
                                 palavra = { id: doc.id, ...doc.data() };
-                                if(palavrasFeitas.find(palavraFeita => palavraFeita.id == palavra.id) == undefined)
+                                if (palavrasFeitas.find(palavraFeita => palavraFeita.id == palavra.id) == undefined)
                                     palavras.push(palavra);
                             });
                             console.log(palavras);
+                            pontuacao = criarPontuacao();
+                            console.log('Pontuação: ' + pontuacao);
                             criarPalavraSecreta();
                             montarPalavranaTela();
 
@@ -74,6 +89,25 @@ async function getPalavras() {
 }
 getPalavras();
 
+function criarPontuacao() {
+    let pontuacaoFinal = 0;
+    if(palavrasFeitas.length > 0){
+        let pontos = palavrasFeitas.map(palavra => palavra.pontos);
+    
+        pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
+    }
+
+    document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
+
+    console.log(palavrasFeitas)
+    let palavrasFeitasDificeis = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível dificil');
+    console.log(palavrasFeitasDificeis)
+    if (palavrasFeitasDificeis.length >= 7) {
+        window.location.href = "../final/final.html";
+    }
+
+    return pontuacaoFinal;
+}
 
 function criarPalavraSecreta() {
     const indexPalavra = parseInt(Math.random() * palavras.length)
@@ -144,14 +178,20 @@ function comparalistas(letra) {
     }
 
     if ((vitoria == true) && (listaDinamica[i] == palavraSecretaSorteada[i])) {
+        pontuacao += 10;
 
         document.getElementById("alerta").innerHTML = "Acertou! ✔️"
         //salvar no banco a pessoa que ganhou, a palavra e a data
-        document.getElementById("pontos").innerHTML = 'Pontuação:' + pontos + 10;
-        pontos++;
 
-
-        piscarBotaoJogarNovamente();
+        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
+        
+        db.collection("jogadores/" + jogador + "/palavrasFeitas").doc(palavraSecretaId)
+            .set({
+                id: palavraSecretaId,
+                pontos: 10,
+                tempo: (((horas * 60) + minutos) * 60) + segundos,
+                dificuldade: 'nível dificil'
+            }).then(() => piscarBotaoJogarNovamente())
     }
 }
 
@@ -178,11 +218,11 @@ btnReiniciar.addEventListener("click", function () {
 let timer;
 let elemento = document.getElementById('timer');
 
-(function () {
+let horas = 0;
+let minutos = 0;
+let segundos = 0;
 
-    let horas = 0;
-    let minutos = 0;
-    let segundos = 0;
+(function () {
 
     timer = setInterval(() => {
         if (segundos == 60) {
@@ -194,12 +234,34 @@ let elemento = document.getElementById('timer');
             horas++;
         }
 
-        elemento.innerHTML = 'Tempo: ' +horas+ ':' +minutos+ ':' +segundos;
+        elemento.innerHTML = '⏱️  ' + (horas < 10 ? '0' : '') + horas + ':' + (minutos < 10 ? '0' : '') + minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
         segundos++;
     }, 1000) // each 1 second
 })();
 
 function pause() {
     clearInterval(timer);
+
+}
+
+function ranking() {
+    window.location.href = "/pages/ranking/ranking.html";
+}
+
+function acao(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'block';
+}
+
+
+function fechar(){
+
+    let modal = document.querySelector('.modal')
+
+
+    modal.style.display = 'none';
 
 }

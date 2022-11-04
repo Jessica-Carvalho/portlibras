@@ -104,6 +104,7 @@ function criarPontuacao() {
     console.log(palavrasFeitasFaceis)
     if (palavrasFeitasFaceis.length >= 3) {
         window.location.href = "../proximoNivel/proximoNivel.html";
+    
     }
 
     return pontuacaoFinal;

@@ -20,20 +20,25 @@ header{
     position: absolute;
 }
 
-h1{
-    height: 70px;
-    display: block;
-    font-size: 39px;
-    line-height: 2.0;
-    text-align: center;   
-    color:#003087;
-    background-color: white;
+h1{ 
+    text-align: center;
+   
 }   
+
+.titulo{
+    height: 70px;
+    position: relative;
+    font-size: 23px;
+    line-height: 1.5;  
+    color:#003087;
+    box-shadow: 1px 2px 8px darkgray;
+    background-color: white;
+}
 
 
 .container{
     display: table;
-    margin-top: -50px;
+    margin-top: 60px;
 }
 
 #imagem{
@@ -47,13 +52,13 @@ h1{
 
 #divPalavra{
     margin-left: 400px;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
     margin-top: 10px;
 }
 
 #palavra-secreta{
     display: flex; 
-    margin-top: 100px; 
+    margin-top: 60px; 
 }
 
 .letras{
@@ -89,6 +94,7 @@ h1{
     cursor: pointer;
     box-shadow: 0px 2px 8px darkgray;
     font-weight: 800;
+ 
 }
 
 .teclas button :hover{
@@ -96,19 +102,21 @@ transform: scale(1.3);
 }
 
 #categoria{
-   margin-top: -10px; 
+   margin-top: -20px; 
    justify-content: center;
    text-align: center;
+   font-size: 15px;
+   font-family:  Poppins-Bold;
    color: #003087;
+   cursor: pointer;
 }
 
 #btnReiniciar{
- width: 50px;
+    width: 50px;
     height: auto;
     text-align: center;
-    border: 2px solid;
-    border-color: #003087;
     border-radius: 5px;
+    border: 1px solid #003087;
     background: white;
     padding: 10px;
     margin-top: 10px;
@@ -117,40 +125,158 @@ transform: scale(1.3);
 
 #alerta{
     color: green;
-    margin-top: 6px; 
+    margin-top: -3px; 
+    margin-left: 200px;
 }
 
 .sair{
     width: 50px;
-    position: left;
+    display: inline;
+    position: relative;
+    top: -55px;
+    margin-left: 1200px;
     text-align: center;
     border-radius: 5px;
+    border-color: #003087;
     background: #003087;
     color: white;
     cursor: pointer
 }
 
 #timer{
-    width: 225px;
+    width: 150px;
+    height: 35px;
     position: relative;
-    margin-left: 10px;
-    margin-top: 6px;
+    margin-left: 190px;
+    margin-top: -35px;
     margin-right: 1200px;
-    font-size: 25px;
-    background: #df960e;
+    font-size: 20px;
+    background: white;
     border-radius: 5px ;
-    color: white;
+    border: 2px solid #003087;
+    color: #003087;
   }
 
   #pontos{
-    width: 225px;
+    width: 150px;
+    height: 35px;
     position: relative;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 25px;
+    margin-top: -129px;
     margin-right: 1200px;
     text-align: center;
-    font-size: 25px;
-    background: #df960e;
+    font-size: 20px;
+    background: white;
     border-radius: 5px ;
-    color: white;
+    border: 2px solid #003087;
+    color: #003087;
   }
+
+  .btn{
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 15px;
+    background: #003087;
+     display: inline-block; 
+     color: white;
+     position: absolute;
+     top: 75%;
+     left: 10%;
+     transform: translate(-50%,-50%);
+     cursor: pointer;
+
+}
+
+.btn:hover{
+
+    background: aliceblue;
+    color: #003087;
+
+
+}
+
+.modal{
+
+    width: 300px;
+    height: 265px;
+    border: 1px solid #003087 ;
+    border-radius: 15px;
+    background-color: #dfe1e2;
+    position: absolute;
+     top: 75%;
+     left: 11.5%;
+     transform: translate(-50%,-50%);
+     display: none;
+     animation: animate;
+     animation-duration: 800ms;
+    
+}
+
+@keyframes animate{
+
+    from{opacity: 1;}
+    from{opacity: 0;}
+}
+
+
+.fechar{
+
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    margin-right: 3px;
+    text-align: center;
+    font: 1em sans-serif;
+    color: white;
+    background-color: #003087;
+    border-radius: 50%;
+    float: right;
+    cursor: pointer;
+}
+
+.imgAprender{
+    
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 15px;
+}
+
+#video {
+    display: block;
+    height: 5px;
+    position: absolute;
+    left: 0%;
+    top: 8.9%;
+    width: 10px;
+    }
+
+    .dicionario{
+        width: 125px;
+        display: inline;
+        position: relative;
+        top: -93px;
+        margin-left: 830px;
+        text-align: center;
+        border-radius: 5px;
+        background: #003087;
+        color: white;
+        cursor: pointer
+    }
+
+    .ranking{
+        width: 125px;
+        display: inline;
+        position: relative;
+        top: -93px;
+        margin-left: 10px;
+        text-align: center;
+        border-radius: 5px;
+        background: #003087;
+        color: white;
+        cursor: pointer
+    }

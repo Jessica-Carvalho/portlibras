@@ -18,7 +18,6 @@
     <div class="titulo">
       <h1>Complete a Palavra</h1><button type="button" class="sair" onclick="logout()">Sair</button>
       <button type="button" class="dicionario" onclick="window.open('https://www.ines.gov.br/dicionario-de-libras/');">Dicionário Libras</button>
-      <button type="button" class="ranking" onclick="ranking()">Ranking</button>
       <div>
         <div>
           <div id="pontos">
@@ -35,6 +34,7 @@
               <div class="container">
                 <div id="imagem">
                   <img id="palavraImg" src="../../imagens/Preloader.svg" width="150">
+                  <img id="palavraSinal" src="" width="65">
                 </div>
                 <div id="divPalavra">
                   <div id="palavra-secreta">
@@ -115,7 +115,7 @@
 
   <div onclick="fechar()" class="fechar">X</div>
   <div id="video">
-      <video width="298" height="240" style="border-radius: 15px" controls="controls" autoplay="autoplay" preload="auto">
+      <video width="298" height="239" style="border-radius: 15px" controls="controls" autoplay="autoplay" preload="auto">
         <source src="../../videos/explicacaovlibras.mp4" type="video/mp4">
         <object data="">
           <embed src="../../videos/explicacaovlibras.mp4">

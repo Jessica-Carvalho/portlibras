@@ -1,7 +1,6 @@
-function sair() {
-    window.location.href = "/pages/home/home.html";
+function voltar() {
+    window.location.href = "/pages/final/final.html";
 }
-
 let jogadores = [];
 let jogadoresSemPontuação = 0;
 
@@ -18,7 +17,9 @@ async function pegarJogadores() {
                 await db.collection("jogadores/" + jogador.id + "/palavrasFeitas")
                     .get()
                     .then(async (palavras) => {
-                        let palavrasFeitas = palavras.docs.map(doc => doc.data());
+                        let palavrasFeitas = palavras.docs
+                            .map(doc => doc.data())
+                            // .filter(palavra => palavra.dificuldade == 'nível fácil');
 
                         // palavras.forEach(palavra => {
                         //     palavrasFeitas.push(palavra.data());
@@ -26,6 +27,8 @@ async function pegarJogadores() {
                         if (palavrasFeitas.length == 0) {
                             jogadoresSemPontuação += 1;
                         } else {
+                            palavras
+
                             let tempo = palavrasFeitas.map(palavra => palavra.tempo);
                             let pontos = palavrasFeitas.map(palavra => palavra.pontos);
 

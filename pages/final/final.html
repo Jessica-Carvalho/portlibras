@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximo Nível</title>
+    <title>Fim do Jogo</title>
 
     <link rel="stylesheet" href="../../global.css">
   <link rel="stylesheet" href="final.css">
 </head>
 
 <body>
-    <button type="button" class="ranking" onclick="ranking()">Ranking</button>
-    <button type="button" class="sair" onclick="sair()">Sair</button>
+  
 
   <div id="frase">
-    Parabéns, você concluiu o jogo! </br>
-  </br> Confira sua posição no ranking.
+    😃 Parabéns, você concluiu o jogo! 
+  </br>
+     Confira sua posição no ranking.
   </div>
-<button id="btnReiniciar" class="btnNivel">Jogar Novamente</button>
+    <button id="btnReiniciar" class="btnNivel" onclick="jogarNovamente()">Jogar Novamente</button>
+    <button type="button" class="ranking" onclick="ranking()">Ranking</button>
+    <button type="button" class="sair" onclick="sair()">Sair</button>
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>

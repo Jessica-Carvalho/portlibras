@@ -1,3 +1,4 @@
+//ATENÇÃO AQUI
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         let jogador = {
@@ -6,7 +7,7 @@ firebase.auth().onAuthStateChanged(user => {
         };
         console.log(jogador); 
         db.collection("jogadores").doc(jogador.id)
-            .set(jogador)
+            .set(jogador, { merge: true })
     }
 })
 
@@ -91,27 +92,54 @@ getPalavras();
 
 function criarPontuacao() {
     let pontuacaoFinal = 0;
-    if(palavrasFeitas.length > 0){
-        let pontos = palavrasFeitas.map(palavra => palavra.pontos);
+    let palavrasFeitasIntermediarias = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível intermediario');
+    if(palavrasFeitasIntermediarias.length > 0){
+        let pontos = palavrasFeitasIntermediarias.map(palavra => palavra.pontos);
     
         pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
     }
 
+    console.log(palavrasFeitas)
+   
+    console.log(palavrasFeitasIntermediarias)
+
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
 
-    console.log(palavrasFeitas)
-    let palavrasFeitasIntermediarias = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível intermediario');
-    console.log(palavrasFeitasIntermediarias)
-    if (palavrasFeitasIntermediarias.length >= 5) {
-        window.location.href = "../proximoNivelDificil/proximoNivelDificil.html";
+    //ATENÇÃO AQUI
+    if (palavrasFeitasIntermediarias.length >= 2) {
+        let user = firebase.auth().currentUser;
+        if (user) {
+            let usuario = user.uid;
+
+            console.log("Usuario: "+usuario); 
+            db.collection("jogadores").doc(usuario)
+            .set({
+                nivelIntermediario: true
+            }, { merge: true }).then(() => {
+                db.collection("jogadores").doc(usuario)
+                .get()
+                .then(doc => {
+                    let jogadorStatus = doc.data();
+                    console.log(jogadorStatus)
+                    //Se não tiver concluído o difícil, manda o jogador para o nível difícil
+                    if(jogadorStatus.nivelIntermediario == true && (jogadorStatus.nivelDificil == undefined || jogadorStatus.nivelDificil == false))
+                        window.location.href = "../proximoNivelDificil/proximoNivelDificil.html"
+                    //Se tiver concluído o difícil, deixa continuar jogando normal
+
+                    if(jogadorStatus.mensagemFinal == true)
+                        window.location.href = "../proximoNivelDificil/proximoNivelDificil.html"
+                })
+            })
+        }
     }
 
     return pontuacaoFinal;
 }
 
 function criarPalavraSecreta() {
-    const indexPalavra = parseInt(Math.random() * palavras.length)
-    // const indexPalavra = parseInt(2)
+    let min = 0;
+    let max = palavras.length;
+    const indexPalavra = Math.floor(Math.random() * (max - min + 1)) + min;
 
     palavraSecretaId = palavras[indexPalavra].id;
     palavraSecretaSorteada = palavras[indexPalavra].name;
@@ -165,6 +193,7 @@ function comparalistas(letra) {
         for (i = 0; i < palavraSecretaSorteada.length; i++) {
             if (palavraSecretaSorteada[i] == letra) {
                 listaDinamica[i] = letra;
+                document.getElementById('tecla-' + letra).style.background = 'green';
             }
         }
     }
@@ -180,7 +209,7 @@ function comparalistas(letra) {
     if ((vitoria == true) && (listaDinamica[i] == palavraSecretaSorteada[i])) {
         pontuacao += 10;
 
-        document.getElementById("alerta").innerHTML = "Acertou! ✔️"
+        document.getElementById("alerta").innerHTML = "😃 Acertou! ✔️"
         //salvar no banco a pessoa que ganhou, a palavra e a data
 
         document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
@@ -242,10 +271,6 @@ let segundos = 0;
 function pause() {
     clearInterval(timer);
 
-}
-
-function ranking() {
-    window.location.href = "/pages/ranking/ranking.html";
 }
 
 function acao(){

@@ -38,11 +38,13 @@ input {
     border: none;
     font-family: Poppins-Medium;
     font-size: 15px;
+    border-radius: 15px;
 }
 button {
     margin-bottom: 10px;
     font-family: Poppins-Medium;
     font-size: 15px;
     display: block;
+    border-radius: 15px;
 }
 

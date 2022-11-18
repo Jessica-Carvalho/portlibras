@@ -12,8 +12,7 @@
         <form>
             <div class="form-field">
                 <div><label>Email</label></div>
-                <input type="email" placeholder="seu@email.com"
-                    onchange="onChangeEmail()" id="email"/>
+                <input type="email" placeholder="seu@email.com" onkeydown="onChangeEmail()"  oninput="onChangeEmail()" id="email"/>
                 <div class="error" id="email-required-error">
                     Email é obrigatório
                 </div>
@@ -23,8 +22,7 @@
             </div>
             <div class="form-field">
                 <div><label>Senha</label></div>
-                <input type="password" placeholder="Senha"
-                    id="password" onchange="onChangePassword()"/>
+                <input type="password" placeholder="Senha" id="password" onkeydown= "onChangePassword()" oninput="onChangePassword()"/>
                 <div class="error" id="password-required-error">
                     Senha é obrigatório
                 </div>
@@ -34,15 +32,13 @@
             </div>
             <div class="form-field">
                 <div><label>Confirmar senha</label></div>
-                <input type="password" placeholder="Confirmar senha"
-                    id="confirmPassword" onchange="onChangeConfirmPassword()"/>
+                <input type="password" placeholder="Confirmar senha" id="confirmPassword" onkeydown= "onChangeConfirmPassword()"  oninput="onChangeConfirmPassword()"/>
                 <div class="error" id="password-doesnt-match-error">
                     Senha e Confirmar senha devem ser iguais
                 </div>
             </div>
             <div>
-                <button type="button" class="solid" disabled="true"
-                    onclick="register()" id="register-button">
+                <button type="button" class="solid" disabled="true" onclick="register()" id="register-button">
                     Cadastrar
                 </button>
             </div>

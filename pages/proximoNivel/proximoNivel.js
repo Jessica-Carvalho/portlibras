@@ -2,7 +2,7 @@
 async function atraso(tempo) {
     return new Promise(x => setTimeout(x, tempo))
 }
-
+let passarNivel;
 async function proximoNivel() {
     while (passarNivel == true) {
         document.getElementById("btnReiniciar").style.backgroundColor = 'green';
@@ -21,7 +21,6 @@ btnReiniciar.addEventListener("click", function () {
     passarNivel = false;
     window.location.href="/pages/nivelIntermediario/nivelIntermediario.html"
 });
-
 
 function sair() {
     firebase.auth().signOut().then(() => {

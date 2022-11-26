@@ -142,12 +142,13 @@ transform: scale(1.3);
 
 #timer{
     display: inline-block;
-    width: 150px;
-    height: 31px;
+    width: 100px;
+    height: 35px;
+    line-height: 2;
     position: absolute;
     margin-top: -6.8%;
-         left: 12.5%;
-    font-size: 20px;
+         left: 9%;
+    font-size: 15px;
     background: rgb(226, 244, 252);
     border-radius: 5px ;
     border: 2px solid #003087;
@@ -157,12 +158,13 @@ transform: scale(1.3);
 
   #pontos{
     display: inline-block;
-    width: 150px;
-    height: 31px;
+    width: 100px;
+    height: 35px;
+    line-height: 2;
     position: absolute;
     margin-top: -6.8%;
          left: 1%;
-    font-size: 20px;
+    font-size: 15px;
     background: rgb(226, 244, 252);
     border-radius: 5px ;
     border: 2px solid #003087;
@@ -197,7 +199,7 @@ transform: scale(1.3);
     text-align: center;
     font-size: 15px;
     font-family: Poppins-Bold !important;
-    width: 153px;
+    width: 151px;
     border-radius: 15px;
     border: solid 1px #003087;
     background: rgb(226, 244, 252);
@@ -226,3 +228,18 @@ transform: scale(1.3);
      transform: translate(-50%,-50%);
      cursor: pointer;
   }
+
+  #tempoTotal{
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    margin-top: -6.8%;
+         left: 17%;
+    font-size: 15px;
+    background: rgb(226, 244, 252);
+    border-radius: 5px ;
+    border: 1px solid white;
+    color: #003087;
+    }  

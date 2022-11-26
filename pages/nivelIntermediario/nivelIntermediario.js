@@ -90,13 +90,14 @@ async function getPalavras() {
 }
 getPalavras();
 
+
 function criarPontuacao() {
     let pontuacaoFinal = 0;
     let palavrasFeitasIntermediarias = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível intermediario');
     if(palavrasFeitasIntermediarias.length > 0){
         let pontos = palavrasFeitasIntermediarias.map(palavra => palavra.pontos);
-    
         pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
+        
     }
 
     console.log(palavrasFeitas)
@@ -105,8 +106,17 @@ function criarPontuacao() {
 
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
 
+    let tempoTotal = 0;
+    if (palavrasFeitasIntermediarias.length > 0) {
+        palavras
+        
+        let tempo = palavrasFeitas.map(palavra => palavra.tempo);
+            tempoTotal = (tempo.reduce((total, atual) => total += atual) + 0);
+    }
+    document.getElementById('tempoTotal').innerHTML =('Meu Tempo: ' +segundosParaTempo(tempoTotal)); 
+
     //ATENÇÃO AQUI
-    if (palavrasFeitasIntermediarias.length >= 2) {
+    if (palavrasFeitasIntermediarias.length >= 15) {
         let user = firebase.auth().currentUser;
         if (user) {
             let usuario = user.uid;
@@ -145,6 +155,7 @@ function criarPalavraSecreta() {
     palavraSecretaSorteada = palavras[indexPalavra].name;
     palavraSecretaCategoria = palavras[indexPalavra].categoria;
     palavraSecretaImg = palavras[indexPalavra].img;
+    palavraSecretaSinal = palavras[indexPalavra].sinal;
     console.log(palavraSecretaSorteada)
     console.log(palavraSecretaCategoria)
 }
@@ -159,6 +170,8 @@ function montarPalavranaTela() {
 
     let palavraImg = document.querySelector('#palavraImg');
     palavraImg.src = palavraSecretaImg;
+    let palavraSinal = document.querySelector('#palavraSinal')
+    palavraSinal.src = palavraSecretaSinal;
 
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (listaDinamica[i] == undefined) {
@@ -288,5 +301,12 @@ function fechar(){
 
 
     modal.style.display = 'none';
+}
 
+function segundosParaTempo(segundos){
+    let data = new Date(segundos * 1000); //Tem que ser em milissegundos
+    if(segundos < 3600) //Se o tempo for menor que 3600 segundos (1 hora)
+        return data.toISOString().substring(14, 19)
+    else
+        return data.toISOString().substring(11, 16);
 }

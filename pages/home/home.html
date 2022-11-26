@@ -18,6 +18,7 @@
     <div class="titulo">
       <h1>Complete a Palavra</h1><button type="button" class="sair" onclick="logout()">Sair</button>
       <button type="button" class="dicionario" onclick="window.open('https://www.ines.gov.br/dicionario-de-libras/');">Dicionário Libras</button>
+      <button type="button" class="ranking" onclick="ranking()">Ranking</button>
       <div>
         <div>
           <div id="pontos">
@@ -26,6 +27,8 @@
           <div id="timer">
             ⏱️ 00:00:00
           </div>
+          <div id="tempoTotal"></div>
+        
           <div>
 
             <br />
@@ -50,6 +53,7 @@
                 <br>
 
                 <center>
+                  <div id="posicaoTeclado">
                   <div id="teclado">
                     <div class="teclas">
                       <button id="tecla-A" onclick="verificaLetraEscolhida('A')">A</button>
@@ -84,6 +88,7 @@
                       </div>
                       <button id="btnReiniciar" class="outline">🎮</button>
                     </div>
+                  </div>
                 </center>
                 <br>
                 <div id="categoria">
@@ -133,5 +138,6 @@
 <script src="../../auth-guard.js"></script>
 <script src="../../loading.js"></script>
 <script src="home.js" defer></script>
+
 
 </html>

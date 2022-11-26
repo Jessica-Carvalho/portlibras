@@ -1,0 +1,66 @@
+/*
+    Zerar estilos
+  */
+  * {
+    margin: 0px; 
+    padding: 0px; 
+    box-sizing: border-box;   
+  }
+body {
+    width: 100vw;
+    height: 90vh;
+    margin-top: 10px;
+    background-color: #73c2fa;
+    font-family:  Poppins-Bold;
+    margin: 0 !important;
+}
+
+tr{
+    text-align: center;
+    border: 1px solid #003087;
+    background-color: #dfe1e2 ;
+}
+
+.titulo{
+    height: 70px;
+    position: relative;
+    font-size: 50px;
+    text-align: center;
+    line-height: 1.5;  
+    color:white;
+    box-shadow: 1px 2px 8px darkgray;
+    background-color: #003087;
+}
+
+.voltar{
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 15px;
+    font-family: Poppins-Bold !important;
+    width: 100px;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid 1px #003087;
+    background: white;
+     display: inline-block; 
+     color: #003087;
+     position: relative;
+     top: 12%;
+     left: 55%;
+     transform: translate(-50%,-50%);
+     cursor: pointer;
+   }
+
+table{
+    width: 30% !important;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 20px !important;
+    font-family:  Poppins-Bold;
+    color: #003087 ; 
+}
+.tabela{
+    border: transparent;
+}
+
+

@@ -1,5 +1,5 @@
 function voltar() {
-    window.location.href = "/pages/final/final.html";
+    window.location.href = "/pages/home/home.html";
 }
 let jogadores = [];
 let jogadoresSemPontuação = 0;
@@ -35,6 +35,7 @@ async function pegarJogadores() {
                             let tempoMedia = (tempo.reduce((total, atual) => total += atual) + 0) / tempo.length;
                             let tempoTotal = (tempo.reduce((total, atual) => total += atual) + 0);
                             let pontuacao = (pontos.reduce((total, atual) => total += atual) + 0);
+
                             jogadores.push({
                                 usuario: usuario,
                                 tempoTotal: tempoTotal,

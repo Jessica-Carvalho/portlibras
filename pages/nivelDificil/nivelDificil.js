@@ -104,6 +104,16 @@ function criarPontuacao() {
     console.log(palavrasFeitasDificeis)
     
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
+
+    let tempoTotal = 0;
+    if (palavrasFeitasDificeis.length > 0) {
+        palavras
+        
+        let tempo = palavrasFeitas.map(palavra => palavra.tempo);
+            tempoTotal = (tempo.reduce((total, atual) => total += atual) + 0);
+    }
+    document.getElementById('tempoTotal').innerHTML =('Meu Tempo: ' +segundosParaTempo(tempoTotal)); 
+
     
     //ATENÇÃO AQUI
     // if(palavrasFeitasDificeis.length >= 1){
@@ -306,5 +316,12 @@ function fechar(){
 
 
     modal.style.display = 'none';
+}
 
+function segundosParaTempo(segundos){
+    let data = new Date(segundos * 1000); //Tem que ser em milissegundos
+    if(segundos < 3600) //Se o tempo for menor que 3600 segundos (1 hora)
+        return data.toISOString().substring(14, 19)
+    else
+        return data.toISOString().substring(11, 16);
 }

@@ -105,18 +105,25 @@ function criarPontuacao() {
     console.log(palavrasFeitas)
     let palavrasFeitasFaceis = palavrasFeitas.filter(palavra => palavra.dificuldade == 'nível fácil');
     console.log(palavrasFeitasFaceis)
-
+  
     if(palavrasFeitasFaceis.length > 0){
         let pontos = palavrasFeitasFaceis.map(palavra => palavra.pontos);
         console.log(pontos)
-    
         pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
     }
-
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
+       
+    let tempoTotal = 0;
+    if (palavrasFeitasFaceis.length > 0) {
+        palavras
 
+        let tempo = palavrasFeitas.map(palavra => palavra.tempo);
+            tempoTotal = (tempo.reduce((total, atual) => total += atual) + 0);
+    }
+    document.getElementById('tempoTotal').innerHTML =('Meu Tempo: ' +segundosParaTempo(tempoTotal)); 
+    
     //ATENÇÃO AQUI
-    if (palavrasFeitasFaceis.length >= 2) {
+    if (palavrasFeitasFaceis.length >= 3) {
         let user = firebase.auth().currentUser;
         if(user){
             let usuario = user.uid;
@@ -227,7 +234,6 @@ function comparalistas(letra) {
         pontuacao += 10;
 
         document.getElementById("alerta").innerHTML = "😃 Acertou! ✔️"
-        //salvar no banco a pessoa que ganhou, a palavra e a data
 
         document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
         
@@ -240,7 +246,7 @@ function comparalistas(letra) {
             }).then(() => piscarBotaoJogarNovamente())
     }
 }
-
+    
 async function atraso(tempo) {
     return new Promise(x => setTimeout(x, tempo))
 }
@@ -297,7 +303,9 @@ function acao(){
 
     modal.style.display = 'block';
 }
-
+function ranking(){
+    window.location.href="../rankingInicial/rankingInicial.html"
+}
 
 function fechar(){
 
@@ -305,5 +313,12 @@ function fechar(){
 
 
     modal.style.display = 'none';
+}
 
+function segundosParaTempo(segundos){
+    let data = new Date(segundos * 1000); //Tem que ser em milissegundos
+    if(segundos < 3600) //Se o tempo for menor que 3600 segundos (1 hora)
+        return data.toISOString().substring(14, 19)
+    else
+        return data.toISOString().substring(11, 16);
 }

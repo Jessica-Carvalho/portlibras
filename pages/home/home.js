@@ -6,6 +6,7 @@ firebase.auth().onAuthStateChanged(user => {
             id: user.uid,
             nome: user.email
         };
+        console.log(jogador)
         db.collection("jogadores").doc(jogador.id)
             .set(jogador, { merge: true })
     }
@@ -101,7 +102,7 @@ function criarPontuacao() {
         pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
     }
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
-       
+       console.log(pontuacaoFinal)
     let tempoTotal = 0;
     if (palavrasFeitasFaceis.length > 0) {
         palavras
@@ -188,30 +189,27 @@ function verificaLetraEscolhida(letra) {
 }
 
 let erros = 0;
-let acertos = 0;
+
 function comparalistas(letra) {
-   
+    
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (palavraSecretaSorteada[i] != letra) {
-            erros += +1;
+           pontuacao += -1;
             document.getElementById('tecla-' + letra).style.background = 'red';
             document.getElementById('tecla-' + letra).disabled = true;
-            pontuacao = acertos - erros;
        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
         }
         else if (palavraSecretaSorteada[i] == letra) {
-                 acertos += +1;
+                pontuacao += +1;
                  listaDinamica[i] = letra;
                  document.getElementById('tecla-' + letra).style.background = 'green';
                  document.getElementById('tecla-' + letra).disabled = true;
-                 pontuacao = acertos - erros;
                   document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
         }
         
        
     }
-
-    
+   
     let vitoria = true;
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (palavraSecretaSorteada[i] != listaDinamica[i]) {
@@ -228,13 +226,31 @@ function comparalistas(letra) {
         db.collection("jogadores/" + jogador + "/palavrasFeitas").doc(palavraSecretaId)
             .set({
                 id: palavraSecretaId,
-                pontos: 4,
+                pontos: 0,
                 tempo: (((horas * 60) + minutos) * 60) + segundos,
                 dificuldade: 'nível fácil'
             }).then(() => piscarBotaoJogarNovamente())
     }
-}
+    let user = firebase.auth().currentUser;
+    if(user){
+        let jogador = pontuacao.uid;
+
+        db.collection("jogadores").doc(jogador)
+        .set({
+            pontuacao: pontuacao,
+        }).then()
+        console.log( pontuacao.id);
+    }
     
+}
+//db.collection("jogadores").doc(usuario)
+   // .get().then((querySnapshot) => {
+   // querySnapshot.forEach((doc) => {
+      //  pontuacao.push(doc.data());
+       // console.log(doc.id, " => ", doc.data());
+   // });
+//});
+  
 async function atraso(tempo) {
     return new Promise(x => setTimeout(x, tempo))
 }

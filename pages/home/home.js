@@ -4,9 +4,8 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         let jogador = {
             id: user.uid,
-            nome: user.email
+            nome: user.email,
         };
-        console.log(jogador)
         db.collection("jogadores").doc(jogador.id)
             .set(jogador, { merge: true })
     }
@@ -102,7 +101,7 @@ function criarPontuacao() {
         pontuacaoFinal = pontos.reduce((total, atual) => total += atual) + 0;
     }
     document.getElementById('pontos').innerHTML = 'Pontos: ' + pontuacaoFinal;
-       console.log(pontuacaoFinal)
+       
     let tempoTotal = 0;
     if (palavrasFeitasFaceis.length > 0) {
         palavras
@@ -197,7 +196,7 @@ function comparalistas(letra) {
            pontuacao += -1;
             document.getElementById('tecla-' + letra).style.background = 'red';
             document.getElementById('tecla-' + letra).disabled = true;
-       document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
+            document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
         }
         else if (palavraSecretaSorteada[i] == letra) {
                 pontuacao += +1;
@@ -233,22 +232,20 @@ function comparalistas(letra) {
     }
     let user = firebase.auth().currentUser;
     if(user){
-        let jogador = pontuacao.uid;
+        let usuario = user.uid;
 
-        db.collection("jogadores").doc(jogador)
+        db.collection("jogadores").doc(usuario)
         .set({
             pontuacao: pontuacao,
-        }).then()
-        console.log( pontuacao.id);
+        }).then(() =>  comparalistas())
+        console.log( usuario.id);
     }
-    
 }
-//db.collection("jogadores").doc(usuario)
-   // .get().then((querySnapshot) => {
-   // querySnapshot.forEach((doc) => {
-      //  pontuacao.push(doc.data());
-       // console.log(doc.id, " => ", doc.data());
-   // });
+//db.collection("jogadores").get().then((querySnapshot) => {
+  // querySnapshot.forEach((doc) => {
+      //pontuacao
+     //console.log(doc.id, " => ", doc.data());
+    //});
 //});
   
 async function atraso(tempo) {

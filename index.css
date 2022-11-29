@@ -112,3 +112,12 @@ h1{
     top: 8.0%;
     width: 10px;
     }
+
+#logo{
+    width: 150px;
+    border-radius: 100px;
+    margin-bottom: 10%;
+    position: absolute;
+    margin-top: -14%;
+    margin-left: -35%;
+}

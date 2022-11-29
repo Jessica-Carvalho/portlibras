@@ -188,32 +188,29 @@ function verificaLetraEscolhida(letra) {
 }
 
 let erros = 0;
-
+let acertos = 0;
 function comparalistas(letra) {
-    const pos = palavraSecretaSorteada.indexOf(letra)
-    if (pos < 0) {
-       pontuacao += -1;
-        
+   
+    for (i = 0; i < palavraSecretaSorteada.length; i++) {
+        if (palavraSecretaSorteada[i] != letra) {
+            erros += +1;
+            document.getElementById('tecla-' + letra).style.background = 'red';
+            document.getElementById('tecla-' + letra).disabled = true;
+            pontuacao = acertos - erros;
        document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
-        document.getElementById('tecla-' + letra).style.background = 'red';
-        document.getElementById('tecla-' + letra).disabled = true;
-
-        erros++;
-    }
-    else {
-        for (i = 0; i < palavraSecretaSorteada.length; i++) {
-            
-            if (palavraSecretaSorteada[i] == letra) {
-                pontuacao += +1;
-                listaDinamica[i] = letra;
-    
-                 document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
+        }
+        else if (palavraSecretaSorteada[i] == letra) {
+                 acertos += +1;
+                 listaDinamica[i] = letra;
                  document.getElementById('tecla-' + letra).style.background = 'green';
                  document.getElementById('tecla-' + letra).disabled = true;
-                 
-            }
+                 pontuacao = acertos - erros;
+                  document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
         }
+        
+       
     }
+
     
     let vitoria = true;
     for (i = 0; i < palavraSecretaSorteada.length; i++) {

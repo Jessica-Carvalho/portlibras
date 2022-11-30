@@ -188,27 +188,47 @@ function verificaLetraEscolhida(letra) {
 }
 
 let erros = 0;
+let acertou = true;
 
-function comparalistas(letra) {
-    
-    for (i = 0; i < palavraSecretaSorteada.length; i++) {
+    function comparalistas(letra){
+        let user = firebase.auth().currentUser;
+    if(user){
+        let usuario = user.uid;
+
+        db.collection("jogadores").doc(usuario)
+        .set({
+            pontuacao: pontuacao,
+        })
+    }
+          for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (palavraSecretaSorteada[i] != letra) {
-           pontuacao += -1;
-            document.getElementById('tecla-' + letra).style.background = 'red';
-            document.getElementById('tecla-' + letra).disabled = true;
-            document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
-        }
-        else if (palavraSecretaSorteada[i] == letra) {
-                pontuacao += +1;
-                 listaDinamica[i] = letra;
+            acertou = false;
+        document.getElementById('tecla-'+letra).style.background = 'red';
+        document.getElementById('tecla-' + letra).disabled = true;
+    }
+} 
+            for (i = 0; i < palavraSecretaSorteada.length; i++) {
+                if (palavraSecretaSorteada[i] == letra) {
+                    acertou = true;
                  document.getElementById('tecla-' + letra).style.background = 'green';
                  document.getElementById('tecla-' + letra).disabled = true;
-                  document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
-        }
-        
-       
+        } 
     }
-   
+
+            for (i = 0; i < palavraSecretaSorteada.length; i++) {
+                if ((palavraSecretaSorteada[i] == letra) && (acertou==true)) {
+                             listaDinamica[i] = letra;
+                                     pontuacao += +1;
+                    document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
+       }
+   }
+                       
+                 for (i = 0; i < palavraSecretaSorteada[i].length; i++) {
+                     if (([i] != letra) && (acertou==false)) {
+                                  pontuacao += -1;
+                     document.getElementById("pontos").innerHTML = 'Pontos: ' + pontuacao;
+        }
+    }
     let vitoria = true;
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (palavraSecretaSorteada[i] != listaDinamica[i]) {
@@ -230,24 +250,7 @@ function comparalistas(letra) {
                 dificuldade: 'nível fácil'
             }).then(() => piscarBotaoJogarNovamente())
     }
-    let user = firebase.auth().currentUser;
-    if(user){
-        let usuario = user.uid;
-
-        db.collection("jogadores").doc(usuario)
-        .set({
-            pontuacao: pontuacao,
-        }).then(() =>  comparalistas())
-        console.log( usuario.id);
-    }
-}
-//db.collection("jogadores").get().then((querySnapshot) => {
-  // querySnapshot.forEach((doc) => {
-      //pontuacao
-     //console.log(doc.id, " => ", doc.data());
-    //});
-//});
-  
+  }
 async function atraso(tempo) {
     return new Promise(x => setTimeout(x, tempo))
 }

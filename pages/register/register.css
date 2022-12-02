@@ -8,14 +8,18 @@
     box-sizing: border-box;
   }
 body {
-    height: 100vh;
-    width: 100%;
+    width: 100%; 
+    max-width: 100vw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #73c2fa;
     display: table;
     }
 form {
     width: 300px;
     font-family: Poppins-Medium;
-    color: #003087; 
+    color: #003087; ;
 }
 #divlogin {
     text-align:justify ;

@@ -258,7 +258,7 @@ async function atraso(tempo) {
 
 async function piscarBotaoJogarNovamente() {
     while (jogarNovamente == true) {
-        document.getElementById("btnReiniciar").style.backgroundColor = 'green';
+        document.getElementById("btnReiniciar").style.backgroundColor = '#caf8ce';
         document.getElementById("btnReiniciar").style.scale = 1.3;
         await atraso(500)
         document.getElementById("btnReiniciar").style.scale = 1;

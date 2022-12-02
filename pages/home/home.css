@@ -13,12 +13,12 @@
 }
 
 body {
-    width: 100vw;
-    height: 90vh;
-    margin-top: 10px;
+    width: 100%; 
+    padding: 0;
+    margin: 0 !important;
     background-color: #73c2fa;
     font-family: Poppins-Bold;
-    margin: 0 !important;
+   
 }
 
 header {
@@ -33,6 +33,7 @@ h1 {
 }
 
 .titulo {
+    display: block;
     height: 75px;
     position: relative;
     font-size: 30px;
@@ -90,7 +91,7 @@ h1 {
 
 #posicaoTeclado {
     position: relative;
-    margin-top: -1%;
+    margin-top: -4%;
     margin-left: -3%;
 }
 
@@ -333,4 +334,166 @@ h1 {
     border-radius: 5px;
     border: 1px solid white;
     color: #003087;
+}
+@media (max-width: 400px){
+        .titulo {
+        display: inline-block;
+        height: 50px;
+        position: relative;
+        font-size: 15px;
+        line-height: 1.2;
+    }
+    #imagem {
+        width: 25px;
+        margin-left: 10px;
+        margin-top: 1px;
+    }
+    
+    #divPalavra {
+        margin-left: 100px;
+        margin-bottom: 50px;
+        margin-top: 0%;
+    }
+    
+    #palavra-secreta {
+        display: flex;
+        margin-top: 25px;
+    }
+    
+    .letras {
+        width: 25px;
+        padding: 5;
+        margin-left: 2px;
+        margin-right: 1px;
+    }
+    
+    #teclado {
+        width: 400px;
+        position: relative;
+        margin-top: 1px;
+    }
+    
+    #posicaoTeclado {
+        position: relative;
+        margin-top: -4%;
+        margin-left: -10%;
+    }
+    
+    .teclas button {
+        width: 25px;
+        padding: 5px;
+        margin-left: 0px;
+        margin-right: -3px;
+        font-weight: 400;
+    }
+    
+    #categoria {
+        margin-top: -4%;
+        margin-left: -3%;
+        font-size: 10px;
+    }
+    
+    #btnReiniciar {
+        width: 25px;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    
+    #alerta {
+        color: green;
+        margin-top: 2%;
+        margin-left: 100px;
+    }
+    
+    #timer {
+        width: 50px;
+        height: 31px;
+        line-height: 2;
+        margin-top: -6.8%;
+        left: 9%;
+        font-size: 10px;
+    }
+    
+    #pontos {
+        width: 100px;
+        height: 31px;
+        line-height: 2;
+        margin-top: -6.8%;
+        left: 1%;
+        font-size: 10px;
+    }
+    
+    .btn {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border-radius: 17px;
+        top: 75%;
+        left: 10%;
+    }
+    
+    .modal {
+    
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        top: 75%;
+        left: 11.5%;
+    }
+  
+.fechar {
+    width: 10px;
+    height: 10px;
+}
+
+    .imgAprender {
+        width: 90px;
+        height: 90px;
+        border-radius: 10px;
+    }
+
+    #video {
+        height: 5px;
+        left: 0%;
+        top: 8.9%;
+        width: 1px;
+    }
+    
+    .dicionario {
+        font-size: 8px;
+        width: 100px;
+        border-radius: 10px;
+        top: -47%;
+        left: 49%;
+    }
+    .ranking {
+        font-size: 8px;
+        width: 100px;
+        border-radius: 10px;
+        top: -47%;
+        left: 26%;
+    }
+    
+    .sair {
+        font-size: 10px;
+        width: 50px;
+        border-radius: 10px;
+        top: -47%;
+        left: 61%;
+    }
+    
+    #palavraSinal {
+        margin-top: 3.5%;
+        border-radius: 5px;
+        margin-left: 3px;
+    }
+    
+    #tempoTotal {
+        width: 100px;
+        height: 31px;
+        margin-top: -6.8%;
+        left: 17%;
+        font-size: 10px;
+    }
+    
 }

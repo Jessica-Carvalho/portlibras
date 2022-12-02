@@ -32,7 +32,9 @@
     box-sizing: border-box; 
 }
 body {
-    width: 100vh; 
+    width: 100%; 
+    max-width: 100vw;
+    height: 100%;
     background: #73c2fa;
 }
 
@@ -135,7 +137,7 @@ button.fab.right {
     display: none;
 } 
 
-@media (min-width:321px){
+@media (max-width: 400px){
     .form-field {
         margin-bottom: 10px;
     }
@@ -166,4 +168,5 @@ button.fab {
     border: 1px solid white;
     font-size: 15px;
 }
+
 }

@@ -335,18 +335,23 @@ h1 {
     border: 1px solid white;
     color: #003087;
 }
+
 @media (max-width: 400px){
         .titulo {
-        display: inline-block;
-        height: 50px;
+        display:inline-block;
+        height: 65px;
         position: relative;
-        font-size: 15px;
-        line-height: 1.2;
+        font-size: 12px;
+        line-height: 2;
     }
     #imagem {
         width: 25px;
-        margin-left: 10px;
+        margin-left: 10%;
         margin-top: 1px;
+    }
+
+    #palavraImg{
+      width: 70px;
     }
     
     #divPalavra {
@@ -362,7 +367,9 @@ h1 {
     
     .letras {
         width: 25px;
-        padding: 5;
+        padding: 5px;
+        position: relative;
+        left: 15%;
         margin-left: 2px;
         margin-right: 1px;
     }
@@ -385,11 +392,12 @@ h1 {
         margin-left: 0px;
         margin-right: -3px;
         font-weight: 400;
+        font-size: 12px;
     }
     
     #categoria {
-        margin-top: -4%;
-        margin-left: -3%;
+        margin-top: -7%;
+        margin-right: 6%;
         font-size: 10px;
     }
     
@@ -406,94 +414,184 @@ h1 {
     }
     
     #timer {
-        width: 50px;
+        width: 60px;
+        height: 20px;
+        line-height: 2;
+        margin-top: -7.8%;
+        left: 19%;
+        font-size: 8px;
+    }
+    
+    #pontos {
+        width: 60px;
+        height: 20px;
+        line-height: 2;
+        margin-top: -7.8%;
+        left: 3%;
+        font-size: 8px;
+    }
+    
+    #tempoTotal {
+        width: 60px;
+        height: 20px;
+        line-height: 1;
+        margin-top: -7.8%;
+        left: 35%;
+        font-size: 8px;
+    }
+
+    .dicionario {
+        font-size: 8px;
+        width: 95px;
+        text-align: justify;
+        line-height: 0;
+        height: 10px;
+        border-radius: 5px;
+        top: 1%;
+        left: 28%;
+    }
+
+    .ranking {
+        font-size: 8px;
+        width: 60px;
+        text-align: justify;
+        line-height: 0;
+        height: 10px;
+        border-radius: 5px;
+        top: 1%;
+        left: 23.5%;
+    }
+
+    
+    .sair {
+        font-size: 8px;
+        width: 30px;
+        height: 10px;
+        text-align: center;
+        border-radius: 5px;
+        line-height: 0;
+        top: 1%;
+        left: 68%;
+    }
+
+    .btn {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        border-radius: 10px;
+        top: 70%;
+        left: 12%;
+    }
+
+    .modal {
+    
+        width: 152px;
+        height: 150px;
+        border-radius: 10px;
+        border: 2px solid #003087;
+        top: 70%;
+        left: 20%;
+    }
+  
+.fechar {
+    width: 10px;
+    height: 10px;
+    font-size: 8px;
+}
+
+    .imgAprender {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+    }
+
+    video {
+        left: 0%;
+        top: 15%;
+        width: 150px;
+        height: 135px;
+    }
+    
+    #palavraSinal {
+        width: 25px;
+        margin-top: 3.5%;
+        border-radius: 5px;
+        margin-left: 3px;
+    }
+    
+}
+
+@media (max-width: 1024px){
+    .titulo {
+        display: block;
+        height: 65px;
+        position: relative;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+    
+    #timer {
+        width: 100px;
         height: 31px;
         line-height: 2;
-        margin-top: -6.8%;
-        left: 9%;
-        font-size: 10px;
+        margin-top: -7.8%;
+        left: 11%;
+        font-size: 15px;
     }
     
     #pontos {
         width: 100px;
         height: 31px;
         line-height: 2;
-        margin-top: -6.8%;
+        margin-top: -7.8%;
         left: 1%;
-        font-size: 10px;
-    }
-    
-    .btn {
-        width: 100px;
-        height: 100px;
-        padding: 10px;
-        border-radius: 17px;
-        top: 75%;
-        left: 10%;
-    }
-    
-    .modal {
-    
-        width: 100px;
-        height: 100px;
-        border-radius: 10px;
-        top: 75%;
-        left: 11.5%;
-    }
-  
-.fechar {
-    width: 10px;
-    height: 10px;
-}
-
-    .imgAprender {
-        width: 90px;
-        height: 90px;
-        border-radius: 10px;
-    }
-
-    #video {
-        height: 5px;
-        left: 0%;
-        top: 8.9%;
-        width: 1px;
-    }
-    
-    .dicionario {
-        font-size: 8px;
-        width: 100px;
-        border-radius: 10px;
-        top: -47%;
-        left: 49%;
-    }
-    .ranking {
-        font-size: 8px;
-        width: 100px;
-        border-radius: 10px;
-        top: -47%;
-        left: 26%;
-    }
-    
-    .sair {
-        font-size: 10px;
-        width: 50px;
-        border-radius: 10px;
-        top: -47%;
-        left: 61%;
-    }
-    
-    #palavraSinal {
-        margin-top: 3.5%;
-        border-radius: 5px;
-        margin-left: 3px;
+        font-size: 15px;
     }
     
     #tempoTotal {
         width: 100px;
         height: 31px;
-        margin-top: -6.8%;
-        left: 17%;
-        font-size: 10px;
+        line-height: 1;
+        margin-top: -7.8%;
+        left: 21.2%;
+        font-size: 15px;
     }
+
+    .dicionario {
+        font-size: 15px;
+        width: 100px;
+        height: 40px;
+        line-height: 0.9;
+        border-radius: 10px;
+        top: -36%;
+        left: 34%;
+    }
+
+    .ranking {
+        font-size: 15px;
+        width: 100px;
+        height: 40px;
+        line-height: 0;
+        border-radius: 10px;
+        top: -35%;
+        left: 35%;
+    }
+
     
+    .sair {
+        font-size: 15px;
+        width: 50px;
+        height: 40px;
+        text-align: center;
+        border-radius: 10px;
+        line-height: 0;
+        top: -35%;
+        left: 59%;
+    }
+   
+    .modal {
+        top: 78%;
+        left: 15%;
+        
+    }
 }

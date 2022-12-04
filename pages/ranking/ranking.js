@@ -11,8 +11,9 @@ async function pegarJogadores() {
         .get()
         .then(async (querySnapshot) => {
             for (let jogador of querySnapshot.docs) {
-                console.log(jogador.data());
-                let usuario = jogador.data().nome;
+                let jogadorDoc = jogador.data();
+                let usuario = jogadorDoc.nome;
+                let pontosAcertos = jogadorDoc.pontuacao;
 
                 await db.collection("jogadores/" + jogador.id + "/palavrasFeitas")
                     .get()
@@ -35,17 +36,19 @@ async function pegarJogadores() {
                             let tempoMedia = (tempo.reduce((total, atual) => total += atual) + 0) / tempo.length;
                             let tempoTotal = (tempo.reduce((total, atual) => total += atual) + 0);
                             let pontuacao = (pontos.reduce((total, atual) => total += atual) + 0);
+
                             jogadores.push({
                                 usuario: usuario,
                                 tempoTotal: tempoTotal,
                                 tempoMedia: tempoMedia,
-                                pontuacao: pontuacao
+                                pontuacao: pontuacao,
+                                acertos: pontosAcertos
                             })
                         }
                     })
             }
         });
-    console.log(jogadores);
+    
     montarTabela(jogadores);
 }
 
@@ -55,14 +58,11 @@ async function montarTabela(listaJogadores) {
 
     let jogadoresOrd = listaJogadores.sort(comparaJogadores)
     jogadoresOrd.reverse();
-    console.log(jogadoresOrd);
-
+    
     let tabela = document.getElementById('corpo-tabela');
-    console.log(listaJogadores);
-
+    
     for (let i = 0; i < jogadoresOrd.length; i++) {
         jogador = listaJogadores[i];
-        console.log(jogador);
         //Cria a linha que irão os dados do jogador
         let linha = document.createElement("tr");
 
@@ -83,13 +83,13 @@ async function montarTabela(listaJogadores) {
 
         //Cria a quarta célula
         let colunaPontuacao = document.createElement("td");
-        let textoPontuacao = document.createTextNode(jogador.pontuacao);
+        let textoPontuacao = document.createTextNode(jogador.pontuacao + jogador.acertos);
         colunaPontuacao.appendChild(textoPontuacao) //Adiciona o texto da posição na célula
 
         linha.appendChild(colunaPosicao) //Adiciono a posição na tabela
         linha.appendChild(colunaUsuario) //Adiciono o nome de usuário (email)
         linha.appendChild(colunaTempo) //Adiciono o tempo
-        //linha.appendChild(colunaPontuacao) //Adiciono a pontuacao
+        linha.appendChild(colunaPontuacao) //Adiciono a pontuacao
         tabela.appendChild(linha)
     }
     //Adiciona a linha final que indica quantos jogadores não possuem pontuação ainda
@@ -102,7 +102,7 @@ async function montarTabela(listaJogadores) {
     tabela.appendChild(linha)
 
     function comparaJogadores(a, b) {
-        console.log(a)
+        
         if (a.pontuacao == b.pontuacao)
             //No desempate precisa multiplicar por -1 porque no desempate é necessário posicionar primeiro quem tem o menor tempo, ao contrário do normal que é posicionar primeiro quem tem a maior pontuação
             return (a.tempoTotal - b.tempoTotal) * -1 
